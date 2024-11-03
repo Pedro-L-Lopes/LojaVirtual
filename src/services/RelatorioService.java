@@ -1,31 +1,30 @@
 package services;
-import models.*;
 
+import models.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+// Serviço responsável pela geração de relatórios de vendas e inventário de produtos
 public class RelatorioService {
-    private final List<Pedido> pedidos = new ArrayList<>();
-    private final List<Produto> produtosDisponiveis;
+    private final List<Pedido> pedidos = new ArrayList<>(); // Lista de pedidos concluídos
+    private final List<Produto> produtosDisponiveis; // Lista de produtos disponíveis na loja
 
     public RelatorioService(List<Produto> produtosDisponiveis) {
         this.produtosDisponiveis = produtosDisponiveis;
     }
 
-    // Registrar pedido finalizado para o relatório de vendas
+    // Registra um pedido finalizado para inclusão no relatório de vendas
     public void registrarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
 
-    // Gera relatório de vendas, exibindo detalhes de cada pedido
+    // Gera e exibe o relatório de vendas, detalhando cada pedido registrado
     public void gerarRelatorioVendas() {
-        // Define o formato desejado
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"); // Formato da data
 
         System.out.println("\nRelatório de Vendas:");
         for (Pedido pedido : pedidos) {
-            // Formata a data de acordo com o padrão especificado
             String dataFormatada = pedido.getData().format(formatter);
             System.out.printf("Cliente: %s | Data: %s | Total: R$%.2f\n",
                     pedido.getCliente().clienteNome(), dataFormatada, pedido.getCarrinho().calcularTotal());
@@ -37,7 +36,7 @@ public class RelatorioService {
         }
     }
 
-    // Gera inventário, exibindo o estoque atual de cada produto
+    // Gera e exibe o inventário, mostrando o estoque atual de cada produto
     public void gerarInventario() {
         System.out.println("\nInventário de Produtos:");
         for (Produto produto : produtosDisponiveis) {

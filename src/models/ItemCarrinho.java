@@ -1,8 +1,8 @@
 package models;
 
 public class ItemCarrinho {
-    private Produto produto;
-    private final int quantidade;
+    private Produto produto; //Produto associado ao item do carrinho
+    private final int quantidade; //Quantidade do produto no carrinho
 
     public ItemCarrinho(Produto produto, int quantidade) {
         this.produto = produto;

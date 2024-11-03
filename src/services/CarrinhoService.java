@@ -7,6 +7,7 @@ import models.Produto;
 import java.util.List;
 import java.util.Scanner;
 
+// Classe responsável por gerenciar a adição de produtos ao carrinho de compras
 public class CarrinhoService {
     private final Carrinho carrinho;
     private final List<Produto> produtosDisponiveis;
@@ -45,8 +46,9 @@ public class CarrinhoService {
                 System.out.println("Digite a quantidade:");
                 int quantidade = Integer.parseInt(scanner.nextLine());
 
+                // Verifica se há estoque suficiente
                 if (quantidade <= produtoSelecionado.getEstoque()) {
-                    carrinho.adicionarItem(produtoSelecionado, quantidade);
+                    carrinho.adicionarItem(produtoSelecionado, quantidade); // Adiciona ao carrinho
                     produtoSelecionado.vender(quantidade); // Atualiza o estoque do produto
                     System.out.printf("Adicionado %d de %s ao carrinho.\n", quantidade, produtoSelecionado.getNome());
                 } else {

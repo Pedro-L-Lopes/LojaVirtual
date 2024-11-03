@@ -4,10 +4,10 @@ import services.interfaces.IPagamentos;
 import exceptions.PagamentoException;
 
 public class Pedido {
-    private Cliente cliente;
-    private Carrinho carrinho;
-    private LocalDateTime data;
-    private IPagamentos pagamentoService;
+    private Cliente cliente;             // Cliente que realizou o pedido
+    private Carrinho carrinho;           // Carrinho associado ao pedido, contendo os itens
+    private LocalDateTime data;          // Data e hora em que o pedido foi realizado
+    private IPagamentos pagamentoService; // Interface para o serviço de pagamento
 
     public Pedido(Cliente cliente, Carrinho carrinho, IPagamentos pagamentoService) {
         this.cliente = cliente;

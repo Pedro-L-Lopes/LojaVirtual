@@ -6,9 +6,11 @@ import services.pagamentosService.CartaoCreditoService;
 import services.interfaces.IPagamentos;
 import java.util.Scanner;
 
+// Classe responsável pela escolha e processamento do método de pagamento
 public class MetodoPagamentoService {
     private final Scanner scanner;
 
+    // Construtor que recebe um objeto Scanner para entrada do usuário
     public MetodoPagamentoService(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -18,6 +20,7 @@ public class MetodoPagamentoService {
         System.out.println("1 - Cartão de Crédito");
         System.out.println("2 - Boleto");
 
+        // Lê a escolha do usuário
         String escolhaPagamento = scanner.nextLine();
         IPagamentos metodoPagamento;
 
@@ -34,7 +37,7 @@ public class MetodoPagamentoService {
                 break;
         }
 
-        // Processar pagamento
+        // Processa o pagamento e trata possíveis exceções
         try {
             if (metodoPagamento.processarPagamento(total)) {
                 System.out.println("Pagamento processado com sucesso!");
